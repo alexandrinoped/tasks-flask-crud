@@ -18,7 +18,7 @@ def create_task():
   task_id_control += 1
   tasks.append(new_task)
   print(tasks)
-  return jsonify({"message": "New task created successfully"})
+  return jsonify({"message": "New task created successfully", "id": new_task })
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
@@ -64,7 +64,7 @@ def delete_task(id):
         task = t
         break
 
-    if task == None:
+    if not task:
       return jsonify({"message": "Unable to find the task"}), 404
     
     tasks.remove(task)
